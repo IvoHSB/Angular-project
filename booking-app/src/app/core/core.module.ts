@@ -4,6 +4,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { HeaderComponent } from './header/header.component';
 import { BookingComponent } from './booking/booking.component';
 import { FooterComponent } from './footer/footer.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 
 
@@ -12,11 +13,12 @@ import { FooterComponent } from './footer/footer.component';
     NavigationComponent,
     HeaderComponent,
     BookingComponent,
-    FooterComponent
+    FooterComponent,
+    NewsletterComponent
   ],
   imports: [
     CommonModule
   ],
-  exports: [NavigationComponent, HeaderComponent, BookingComponent, FooterComponent]
+  exports: [NavigationComponent, HeaderComponent, BookingComponent, FooterComponent, NewsletterComponent]
 })
 export class CoreModule { }
