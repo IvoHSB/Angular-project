@@ -4,6 +4,7 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { HeaderComponent } from './header/header.component';
 import { EmailsSectionComponent } from './emails-section/emails-section.component';
 import { MapComponent } from './map/map.component';
+import { FormComponent } from './form/form.component';
 
 
 
@@ -12,7 +13,8 @@ import { MapComponent } from './map/map.component';
     ContactPageComponent,
     HeaderComponent,
     EmailsSectionComponent,
-    MapComponent
+    MapComponent,
+    FormComponent
   ],
   imports: [
     CommonModule
