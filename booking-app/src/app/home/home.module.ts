@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AboutModule } from '../about/about.module';
 import { VideoSectionComponent } from './video-section/video-section.component';
+import { ServicesModule } from '../services/services.module';
 
 
 
@@ -12,7 +13,7 @@ import { VideoSectionComponent } from './video-section/video-section.component';
     VideoSectionComponent
   ],
   imports: [
-    CommonModule, AboutModule
+    CommonModule, AboutModule, ServicesModule
   ],
   exports: [HomePageComponent]
 })
