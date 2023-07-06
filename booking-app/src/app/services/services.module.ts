@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OurServicesSectionComponent } from './our-services-section/our-services-section.component';
 import { SurvicesPageComponent } from './survices-page/survices-page.component';
+import { TestimonialSectionComponent } from './testimonial-section/testimonial-section.component';
 
 
 
 @NgModule({
   declarations: [
     OurServicesSectionComponent,
-    SurvicesPageComponent
+    SurvicesPageComponent,
+    TestimonialSectionComponent
   ],
   imports: [
     CommonModule
