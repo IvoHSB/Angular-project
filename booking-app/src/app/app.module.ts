@@ -9,6 +9,7 @@ import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
 import { ServicesModule } from './services/services.module';
 import { BookingModule } from './booking/booking.module';
+import { ContactModule } from './contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BookingModule } from './booking/booking.module';
     HomeModule,
     AboutModule,
     ServicesModule,
-    BookingModule
+    BookingModule,
+    ContactModule
   ],
   providers: [],
   bootstrap: [AppComponent]
