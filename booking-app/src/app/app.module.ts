@@ -10,6 +10,7 @@ import { AboutModule } from './about/about.module';
 import { ServicesModule } from './services/services.module';
 import { BookingModule } from './booking/booking.module';
 import { ContactModule } from './contact/contact.module';
+import { OurTeamModule } from './our-team/our-team.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ContactModule } from './contact/contact.module';
     AboutModule,
     ServicesModule,
     BookingModule,
-    ContactModule
+    ContactModule,
+    OurTeamModule
   ],
   providers: [],
   bootstrap: [AppComponent]
