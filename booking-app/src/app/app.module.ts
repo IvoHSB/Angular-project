@@ -8,6 +8,7 @@ import { ShareModule } from './share/share.module';
 import { HomeModule } from './home/home.module';
 import { AboutModule } from './about/about.module';
 import { ServicesModule } from './services/services.module';
+import { BookingModule } from './booking/booking.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ServicesModule } from './services/services.module';
     ShareModule,
     HomeModule,
     AboutModule,
-    ServicesModule
+    ServicesModule,
+    BookingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
