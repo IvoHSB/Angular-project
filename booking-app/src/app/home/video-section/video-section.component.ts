@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./video-section.component.css']
 })
 export class VideoSectionComponent {
+  isVisibleVideo = false;
 
+  showVideo(): void {
+    console.log('asdgdg')
+    this.isVisibleVideo = true;
+    let body: any = document.querySelector('body');
+    body.style.overflow = 'hidden';
+  }
+
+  hideVideo(): void {
+    this.isVisibleVideo = false;
+    let body: any = document.querySelector('body');
+    body.style.overflow = 'auto';
+  }
 }
