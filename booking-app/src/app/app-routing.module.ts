@@ -8,6 +8,7 @@ import { OurTeamPageComponent } from './our-team/our-team-page/our-team-page.com
 import { ContactPageComponent } from './contact/contact-page/contact-page.component';
 import { RegisterPageComponent } from './auth-pages/register-page/register-page.component';
 import { LoginPageComponent } from './auth-pages/login-page/login-page.component';
+import { NotFoundPageComponent } from './home/not-found-page/not-found-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'login', component: LoginPageComponent},
+  {path: '**', component: NotFoundPageComponent},
 
 ];
 

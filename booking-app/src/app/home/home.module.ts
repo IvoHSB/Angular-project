@@ -5,6 +5,7 @@ import { AboutModule } from '../about/about.module';
 import { VideoSectionComponent } from './video-section/video-section.component';
 import { ServicesModule } from '../services/services.module';
 import { HeaderForHomeComponent } from './header-for-home/header-for-home.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 
 
@@ -12,11 +13,12 @@ import { HeaderForHomeComponent } from './header-for-home/header-for-home.compon
   declarations: [
     HomePageComponent,
     VideoSectionComponent,
-    HeaderForHomeComponent
+    HeaderForHomeComponent,
+    NotFoundPageComponent
   ],
   imports: [
     CommonModule, AboutModule, ServicesModule
   ],
-  exports: [HomePageComponent, HeaderForHomeComponent]
+  exports: [HomePageComponent, HeaderForHomeComponent, NotFoundPageComponent]
 })
 export class HomeModule { }
