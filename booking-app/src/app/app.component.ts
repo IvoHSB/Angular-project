@@ -12,6 +12,10 @@ export class AppComponent implements OnInit {
 
   constructor(private location: Location) {}
 
+  scrollToTop(): void {
+    window.scroll({top: 0, left: 0, behavior: 'smooth'});
+  }
+
   ngOnInit(): void {
 
     if (this.location.path() === '') {
