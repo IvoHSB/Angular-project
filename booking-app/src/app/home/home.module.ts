@@ -4,17 +4,19 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AboutModule } from '../about/about.module';
 import { VideoSectionComponent } from './video-section/video-section.component';
 import { ServicesModule } from '../services/services.module';
+import { HeaderForHomeComponent } from './header-for-home/header-for-home.component';
 
 
 
 @NgModule({
   declarations: [
     HomePageComponent,
-    VideoSectionComponent
+    VideoSectionComponent,
+    HeaderForHomeComponent
   ],
   imports: [
     CommonModule, AboutModule, ServicesModule
   ],
-  exports: [HomePageComponent]
+  exports: [HomePageComponent, HeaderForHomeComponent]
 })
 export class HomeModule { }
