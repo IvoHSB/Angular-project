@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { BookingComponent } from './booking/booking.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     NewsletterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [NavigationComponent, HeaderComponent, BookingComponent, FooterComponent, NewsletterComponent]
 })
