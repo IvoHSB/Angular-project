@@ -37,11 +37,11 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a routerLink="/" class="nav-item nav-link" [class]="activePage === 'home' ? 'active' : ''">Home</a>
-                        <a routerLink="/about" class="nav-item nav-link" [class]="activePage === 'about' ? 'active' : ''">About</a>
-                        <a routerLink="/services" class="nav-item nav-link" [class]="activePage === 'services' ? 'active' : ''">Services</a>
-                        <a routerLink="/booking" class="nav-item nav-link" [class]="activePage === 'booking' ? 'active' : ''">Booking</a>
-                        <a routerLink="/our-team" class="nav-item nav-link" [class]="activePage === 'our-team' ? 'active' : ''">Our Team</a>
+                        <a routerLink="/" (click)="changeActivePage('home')" class="nav-item nav-link" [class]="activePage === 'home' ? 'active' : ''">Home</a>
+                        <a routerLink="/about" (click)="changeActivePage('about')" class="nav-item nav-link" [class]="activePage === 'about' ? 'active' : ''">About</a>
+                        <a routerLink="/services" (click)="changeActivePage('service')" class="nav-item nav-link" [class]="activePage === 'services' ? 'active' : ''">Services</a>
+                        <a routerLink="/booking" (click)="changeActivePage('booking')" class="nav-item nav-link" [class]="activePage === 'booking' ? 'active' : ''">Booking</a>
+                        <a routerLink="/our-team" (click)="changeActivePage('our-team')" class="nav-item nav-link" [class]="activePage === 'our-team' ? 'active' : ''">Our Team</a>
                         <!-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0"> on hover add class show -->
@@ -50,7 +50,7 @@
                                 <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                             </div> -->
                         <!-- </div> -->
-                        <a routerLink="contact" class="nav-item nav-link" [class]="activePage === 'contact' ? 'active' : ''">Contact</a>
+                        <a routerLink="contact" (click)="changeActivePage('contact')" class="nav-item nav-link" [class]="activePage === 'contact' ? 'active' : ''">Contact</a>
                     </div>
                     <a routerLink="/login" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">sign in/up<i class="fa fa-arrow-right ms-3"></i></a>
                 </div>

@@ -7,9 +7,13 @@ import { Location } from '@angular/common';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  activePage = "home"
+  activePage: String = "home";
 
   constructor(private location: Location) {}
+
+  changeActivePage(page: String): void {
+    this.activePage = page;
+  }
 
   ngOnInit(): void {
     if (this.location.path() === '') {
