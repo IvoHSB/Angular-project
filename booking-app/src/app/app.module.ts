@@ -11,6 +11,7 @@ import { ServicesModule } from './services/services.module';
 import { BookingModule } from './booking/booking.module';
 import { ContactModule } from './contact/contact.module';
 import { OurTeamModule } from './our-team/our-team.module';
+import { AuthPagesModule } from './auth-pages/auth-pages.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { OurTeamModule } from './our-team/our-team.module';
     ServicesModule,
     BookingModule,
     ContactModule,
-    OurTeamModule
+    OurTeamModule,
+    AuthPagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
