@@ -14,7 +14,7 @@ export class SurvicesPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({value: false}));
-    this.store.dispatch(changePage({value: "Service"}));
+    this.store.dispatch(changePage({value: "Services"}));
   }
 
 }
