@@ -25,9 +25,9 @@
 
     <app-navigation />
 
-    <app-header *ngIf="!isHomePageHeader"/>
+    <app-header-for-home *ngIf="(isMainHeader$ | async)" />
 
-    <app-header-for-home *ngIf="isHomePageHeader" />
+    <app-header *ngIf="!(isMainHeader$ | async)" />
 
     <app-booking />
 

@@ -13,6 +13,9 @@ import { BookingModule } from './booking/booking.module';
 import { ContactModule } from './contact/contact.module';
 import { OurTeamModule } from './our-team/our-team.module';
 import { AuthPagesModule } from './auth-pages/auth-pages.module';
+import { StoreModule } from '@ngrx/store';
+
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { AuthPagesModule } from './auth-pages/auth-pages.module';
     BookingModule,
     ContactModule,
     OurTeamModule,
-    AuthPagesModule
+    AuthPagesModule,
+    StoreModule.forRoot(
+      reducers
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
