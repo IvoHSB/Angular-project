@@ -9,6 +9,7 @@ import { ContactPageComponent } from './contact/contact-page/contact-page.compon
 import { RegisterPageComponent } from './auth-pages/register-page/register-page.component';
 import { LoginPageComponent } from './auth-pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './home/not-found-page/not-found-page.component';
+import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'login', component: LoginPageComponent},
+  {path: 'profile/:profileId', component: ProfilePageComponent},
   {path: '**', component: NotFoundPageComponent},
 
 ];

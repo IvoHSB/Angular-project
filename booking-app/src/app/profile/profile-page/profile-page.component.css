@@ -1,0 +1,44 @@
+
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profile-details {
+    margin-left: 20px;
+}
+
+section {
+    margin: 50px auto;
+    max-width: 800px;
+    text-align: center;
+}
+
+.booking-container,
+.reviews-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.booking-item,
+.review-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
