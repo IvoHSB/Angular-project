@@ -15,6 +15,7 @@ import { ContactModule } from './contact/contact.module';
 import { OurTeamModule } from './our-team/our-team.module';
 import { AuthPagesModule } from './auth-pages/auth-pages.module';
 import { ProfileModule } from './profile/profile.module';
+import { AddOfferModule } from './add-offer/add-offer.module';
 
 import { reducers } from './store/reducers';
 
@@ -36,6 +37,7 @@ import { reducers } from './store/reducers';
     OurTeamModule,
     AuthPagesModule,
     ProfileModule,
+    AddOfferModule,
     StoreModule.forRoot(
       reducers
     )

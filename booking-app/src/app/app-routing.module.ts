@@ -10,6 +10,7 @@ import { RegisterPageComponent } from './auth-pages/register-page/register-page.
 import { LoginPageComponent } from './auth-pages/login-page/login-page.component';
 import { NotFoundPageComponent } from './home/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
+import { AddOfferPageComponent } from './add-offer/add-offer-page/add-offer-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterPageComponent},
   {path: 'login', component: LoginPageComponent},
   {path: 'profile/:profileId', component: ProfilePageComponent},
+  {path: 'add-offer', component: AddOfferPageComponent},
   {path: '**', component: NotFoundPageComponent},
 
 ];

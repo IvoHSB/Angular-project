@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 
@@ -9,7 +10,11 @@ import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.act
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private router: Router) {}
+
+  goToAddOfferPage() {
+    this.router.navigate(['/add-offer'])
+  }
 
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({value: false}));
