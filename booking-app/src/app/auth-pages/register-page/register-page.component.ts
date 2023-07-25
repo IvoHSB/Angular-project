@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-register-page',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class RegisterPageComponent {
 
+  registerHandler(form: NgForm): void {
+    console.log(form.value)
+  }
 }

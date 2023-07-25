@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
     LoginPageComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule
   ],

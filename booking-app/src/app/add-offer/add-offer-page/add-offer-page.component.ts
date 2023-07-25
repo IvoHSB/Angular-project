@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { NgForm } from '@angular/forms';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 
 @Component({
@@ -9,6 +10,10 @@ import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.act
 })
 export class AddOfferPageComponent implements OnInit {
 
+
+  addOfferHandler(form: NgForm): void {
+    console.log(form.value)
+  }
 
   constructor(private store: Store) {}
 
