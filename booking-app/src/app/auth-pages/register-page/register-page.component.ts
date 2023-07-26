@@ -22,14 +22,14 @@ export class RegisterPageComponent implements OnInit {
   registerHandler(form: NgForm): void {
 
     this.haveError = false;
-    let emailRegx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
+    let emailRegx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     let formValue: registerForm = form.value;
 
     if (!emailRegx.test(formValue.email)) {
       this.haveError = true;
       this.errorMessage = 'Invalid email!';
-  } else if (formValue.password !== formValue.confirm_password) {
+    } else if (formValue.password !== formValue.confirm_password) {
       this.haveError = true;
       this.errorMessage = 'Password mismatch!';
     } else if (formValue.password.length < 9) {

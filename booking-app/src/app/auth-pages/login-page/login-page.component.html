@@ -1,5 +1,12 @@
 <div class="container">
     <h1>Login</h1>
+
+    <div *ngIf="haveError" class="alert alert-danger d-flex align-items-center" role="alert">
+      <div>
+        {{ errorMessage }}
+      </div>
+    </div>
+
     <form #loginForm="ngForm" (ngSubmit)="loginHandler(loginForm)">
       <div class="form-group">
         <label for="email">Email:</label>

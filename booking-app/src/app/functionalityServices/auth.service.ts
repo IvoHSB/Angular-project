@@ -1,6 +1,6 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { registerBody } from './authInterfaces';
+import { loginBody, registerBody } from './authInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,15 @@ import { registerBody } from './authInterfaces';
 
 export class AuthService {
 
+  authUrl: string = 'http://localhost:3030/users/';
+
   constructor(private _http: HttpClient) { }
 
   register(data: registerBody) {
-    return this._http.post('http://localhost:3030/users/register', JSON.stringify(data));
+    return this._http.post(`${this.authUrl}register`, JSON.stringify(data));
+  }
+
+  login(data: loginBody) {
+    return this._http.post(`${this.authUrl}login`, JSON.stringify(data));
   }
 }

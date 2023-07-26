@@ -7,3 +7,8 @@ export interface registerBody {
     phone: string;
     img: string;
 }
+
+export interface loginBody {
+    email: string;
+    password: string;
+}
