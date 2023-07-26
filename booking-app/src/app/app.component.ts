@@ -12,7 +12,7 @@ import { changeIsMainHeader } from './store/actions/header.action';
 export class AppComponent implements OnInit {
 
   title = 'booking-app';
-  isMainHeader$ = this.store.select(isMainHeader);
+  isMainHeader$: any;
 
   constructor(private location: Location, private store: Store) {}
 
@@ -21,5 +21,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(isMainHeader).subscribe(p => this.isMainHeader$ = p);
   }
 }

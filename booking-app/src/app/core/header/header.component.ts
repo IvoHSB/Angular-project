@@ -9,10 +9,11 @@ import { page } from 'src/app/store/selectors/header.selector';
 })
 export class HeaderComponent implements OnInit {
 
-  page$ = this.store.select(page);
+  page$: any;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    this.store.select(page).subscribe(p => this.page$ = p)
   }
 }
