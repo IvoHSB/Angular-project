@@ -1,5 +1,12 @@
 <div class="container">
     <h1>Register</h1>
+
+    <div *ngIf="haveError" class="alert alert-danger d-flex align-items-center" role="alert">
+      <div>
+        {{ errorMessage }}
+      </div>
+    </div>
+
     <form #registerForm="ngForm" (ngSubmit)="registerHandler(registerForm)">
       <div class="form-group">
         <label for="name">Name:</label>
@@ -8,6 +15,22 @@
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" ngModel required>
+      </div>
+      <div class="form-group">
+        <label for="img">Profile image:</label>
+        <input type="text" id="img" name="img" ngModel required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
