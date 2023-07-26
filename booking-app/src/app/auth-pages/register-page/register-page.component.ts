@@ -4,7 +4,9 @@ import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/functionalityServices/auth.service';
 import { registerForm } from './interfaces';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
-import { registerBody } from 'src/app/functionalityServices/authInterfaces';
+import { registerBody, userDetailsData } from 'src/app/functionalityServices/authInterfaces';
+import { setUser, setUserDetailsId } from 'src/app/store/actions/auth.action';
+import { user } from 'src/app/store/selectors/auth.selector';
 
 @Component({
   selector: 'app-register-page',
@@ -59,19 +61,45 @@ export class RegisterPageComponent implements OnInit {
       img: formValue.img,
     }
 
+    const userDetails: userDetailsData = {
+      name: formValue.name,
+      email: formValue.email,
+      country: formValue.country,
+      city: formValue.city,
+      phone: formValue.phone,
+      img: formValue.img,
+    }
+
     if (!this.haveError) {
       this._authService.register(registerBody).subscribe(
         res => {
-          console.log(res)
           this.haveError = false;
           this.user = res;
+          this.store.select(user).subscribe((p: any) => {
+            if (p) {
+              this._authService.addUserDetails(userDetails, p.accessToken).subscribe(
+                (response: any) => {
+                  this.store.dispatch(setUserDetailsId({value: response._id}));
+                  //redirect to home or profile page
+                },
+                err => {
+                  this.haveError = true;
+                  this.errorMessage = err.error.message;
+                } 
+              )
+            }
+          })
+          this.store.dispatch(setUser({value: res}));
         },
         err => {
           this.haveError = true;
           this.errorMessage = err.error.message;
         })
     }
-    // console.log(form.value)
+  }
+
+  demo(): void {
+    console.log(this.store.select(user));
   }
 
   ngOnInit(): void {

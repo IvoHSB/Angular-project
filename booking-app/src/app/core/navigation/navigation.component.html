@@ -52,7 +52,8 @@
                         <!-- </div> -->
                         <a routerLink="contact" (click)="changeActivePage('contact')" class="nav-item nav-link" [class]="activePage === 'contact' ? 'active' : ''">Contact</a>
                     </div>
-                    <a routerLink="/login" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">sign in/up<i class="fa fa-arrow-right ms-3"></i></a>
+                    <a *ngIf="!user$" routerLink="/login" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">sign in/up<i class="fa fa-arrow-right ms-3"></i></a>
+                    <a *ngIf="user$ " routerLink="/profile/userId" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">{{user$.name}}</a>
                 </div>
             </nav>
         </div>

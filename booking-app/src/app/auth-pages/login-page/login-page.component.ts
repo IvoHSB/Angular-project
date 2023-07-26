@@ -1,9 +1,12 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/functionalityServices/auth.service';
 import { loginBody } from 'src/app/functionalityServices/authInterfaces';
+import { setUser } from 'src/app/store/actions/auth.action';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
+import { user } from 'src/app/store/selectors/auth.selector';
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   haveError: boolean = false;
   errorMessage: string = '';
-  user: any;
+  user: any = this.store.select(user);
 
   constructor(private _authService: AuthService, private store: Store) { }
 
@@ -31,10 +34,11 @@ export class LoginPageComponent implements OnInit {
 
     if (!this.haveError) {
       this._authService.login(formValue).subscribe(
-        res => {
-          console.log(res)
+        (res: any) => {
+          this.store.dispatch(setUser({value: res}));
+          // console.log(res)
           this.haveError = false;
-          this.user = res;
+          // this.user = res;
         },
         err => {
           this.haveError = true;

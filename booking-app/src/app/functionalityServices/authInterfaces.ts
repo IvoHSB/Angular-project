@@ -8,6 +8,15 @@ export interface registerBody {
     img: string;
 }
 
+export interface userDetailsData {
+    name: string;
+    email: string;
+    country: string;
+    city: string;
+    phone: string;
+    img: string;
+}
+
 export interface loginBody {
     email: string;
     password: string;
