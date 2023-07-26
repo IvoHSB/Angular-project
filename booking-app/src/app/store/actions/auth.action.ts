@@ -1,6 +1,5 @@
 import { createAction, props } from "@ngrx/store"
 
-
 const actionTypes = {
     setUser: 'SET_USER',
     setUserDetailsId: 'SET_USER_DETAILS_ID'

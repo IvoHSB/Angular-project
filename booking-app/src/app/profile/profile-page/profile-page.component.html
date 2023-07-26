@@ -1,53 +1,56 @@
-<div class="profile-container">
-    <div class="profile-image">
-        <img src="https://static.toiimg.com/thumb/58495918/15027399_1439567879390663_7771844902277915250_n.jpg?width=1200&height=900" alt="Profile Picture">
+<div *ngIf="profile$">
+    <div class="profile-container">
+        <div class="profile-image">
+            <img src="{{profile$.img}}"
+                alt="Profile Picture">
+        </div>
+        <div class="profile-details">
+            <h2>{{profile$.name}}</h2>
+            <p>Email: {{profile$.email}}</p>
+            <p>Location: {{profile$.city}}, {{profile$.country}}</p>
+            <p>Phone: {{profile$.phone}}</p>
+        </div>
     </div>
-    <div class="profile-details">
-        <h2>John Doe</h2>
-        <p>Email: john.doe@example.com</p>
-        <p>Location: New York, USA</p>
-        <p>Phone: +1 123-456-7890</p>
-    </div>
+
+    <section class="booking-section">
+        <h2>Bookings</h2>
+        <div class="booking-container">
+            <div class="booking-item">
+                <h3>Booking 1</h3>
+                <p>Date: January 1, 2023</p>
+                <p>Location: Paris, France</p>
+            </div>
+            <div class="booking-item">
+                <h3>Booking 2</h3>
+                <p>Date: February 15, 2023</p>
+                <p>Location: London, UK</p>
+            </div>
+            <div class="booking-item">
+                <h3>Booking 3</h3>
+                <p>Date: March 20, 2023</p>
+                <p>Location: Tokyo, Japan</p>
+            </div>
+        </div>
+        <div *ngIf="profile$._ownerId === user$._id" class="col-md-2 bth-box">
+            <button (click)="goToAddOfferPage()" class="btn btn-primary">Add offer</button>
+        </div>
+    </section>
+
+    <section class="reviews-section">
+        <h2>Reviews</h2>
+        <div class="reviews-container">
+            <div class="review-item">
+                <h3>Review 1</h3>
+                <p>Rating: 4.5/5</p>
+                <p>Comment: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo cursus
+                    hendrerit. Donec aliquam nulla id condimentum vestibulum.</p>
+            </div>
+            <div class="review-item">
+                <h3>Review 2</h3>
+                <p>Rating: 5/5</p>
+                <p>Comment: Nullam sed semper massa. Integer eu dapibus dolor. Nam finibus commodo orci ut
+                    pellentesque.</p>
+            </div>
+        </div>
+    </section>
 </div>
-
-<section class="booking-section">
-    <h2>Bookings</h2>
-    <div class="booking-container">
-        <div class="booking-item">
-            <h3>Booking 1</h3>
-            <p>Date: January 1, 2023</p>
-            <p>Location: Paris, France</p>
-        </div>
-        <div class="booking-item">
-            <h3>Booking 2</h3>
-            <p>Date: February 15, 2023</p>
-            <p>Location: London, UK</p>
-        </div>
-        <div class="booking-item">
-            <h3>Booking 3</h3>
-            <p>Date: March 20, 2023</p>
-            <p>Location: Tokyo, Japan</p>
-        </div>
-    </div>
-    <div class="col-md-2 bth-box">
-        <button (click)="goToAddOfferPage()" class="btn btn-primary">Add offer</button>
-    </div>
-</section>
-
-<section class="reviews-section">
-    <h2>Reviews</h2>
-    <div class="reviews-container">
-        <div class="review-item">
-            <h3>Review 1</h3>
-            <p>Rating: 4.5/5</p>
-            <p>Comment: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo cursus
-                hendrerit. Donec aliquam nulla id condimentum vestibulum.</p>
-        </div>
-        <div class="review-item">
-            <h3>Review 2</h3>
-            <p>Rating: 5/5</p>
-            <p>Comment: Nullam sed semper massa. Integer eu dapibus dolor. Nam finibus commodo orci ut
-                pellentesque.</p>
-        </div>
-    </div>
-</section>

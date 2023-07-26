@@ -1,10 +1,11 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/functionalityServices/auth.service';
 import { loginBody } from 'src/app/functionalityServices/authInterfaces';
-import { setUser } from 'src/app/store/actions/auth.action';
+import { setUser, setUserDetailsId } from 'src/app/store/actions/auth.action';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 import { user } from 'src/app/store/selectors/auth.selector';
 
@@ -19,7 +20,7 @@ export class LoginPageComponent implements OnInit {
   errorMessage: string = '';
   user: any = this.store.select(user);
 
-  constructor(private _authService: AuthService, private store: Store) { }
+  constructor(private _authService: AuthService, private store: Store,private router: Router) { }
 
   loginHandler(form: NgForm): void {
 
@@ -36,8 +37,17 @@ export class LoginPageComponent implements OnInit {
       this._authService.login(formValue).subscribe(
         (res: any) => {
           this.store.dispatch(setUser({value: res}));
+          this._authService.getUserDetailsByOwnerId(res._id).subscribe((response: any) => {
+
+            this.store.dispatch(setUserDetailsId({value: response[0]._id}));
+            this.router.navigate([`/profile/${response[0]._id}`]);
+            this.haveError = false;
+          },
+          err => {
+            this.haveError = true;
+            this.errorMessage = err;
+          })
           // console.log(res)
-          this.haveError = false;
           // this.user = res;
         },
         err => {

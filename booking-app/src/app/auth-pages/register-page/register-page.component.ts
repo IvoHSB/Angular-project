@@ -7,6 +7,7 @@ import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.act
 import { registerBody, userDetailsData } from 'src/app/functionalityServices/authInterfaces';
 import { setUser, setUserDetailsId } from 'src/app/store/actions/auth.action';
 import { user } from 'src/app/store/selectors/auth.selector';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -19,7 +20,7 @@ export class RegisterPageComponent implements OnInit {
   errorMessage: string = '';
   user: any;
 
-  constructor(private _authService: AuthService, private store: Store) { }
+  constructor(private _authService: AuthService, private store: Store, private router: Router) { }
 
   registerHandler(form: NgForm): void {
 
@@ -80,7 +81,8 @@ export class RegisterPageComponent implements OnInit {
               this._authService.addUserDetails(userDetails, p.accessToken).subscribe(
                 (response: any) => {
                   this.store.dispatch(setUserDetailsId({value: response._id}));
-                  //redirect to home or profile page
+
+                  this.router.navigate([`/profile/${response._id}`]);
                 },
                 err => {
                   this.haveError = true;
