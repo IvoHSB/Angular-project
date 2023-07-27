@@ -1,25 +1,68 @@
 <div class="form-container">
     <form #addOfferForm="ngForm" (ngSubmit)="addOfferHandler(addOfferForm)">
         <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" ngModel required>
+            <label for="name">Room name:</label>
+            <input type="text" id="name" name="name" ngModel required>
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
             <textarea id="description" name="description" ngModel required></textarea>
         </div>
         <div class="form-group">
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" ngModel required>
-        </div>
-        <div class="form-group">
             <label for="image">Image:</label>
             <input type="text" id="image" name="image" ngModel required>
         </div>
         <div class="form-group">
-            <label for="image">Location:</label>
-            <input type="text" id="image" name="location" ngModel required>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" ngModel required>
         </div>
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" ngModel required>
+        </div>
+        <div class="form-group">
+            <label for="people">Occupancy:</label>
+            <input type="number" id="people" name="people" ngModel required>
+        </div>
+        <div class="form-group">
+            <label for="bath">Num of bath:</label>
+            <input type="number" id="bath" name="bath" ngModel required>
+        </div>
+        <div class="form-group">
+            <label for="size">Size in sqm:</label>
+            <input type="number" id="size" name="size" ngModel required>
+        </div>
+        <div class="form-group">
+            <label for="stars">Stars:</label>
+            <select class="form-select" #stars (change)="demo(stars.value)" id="stars"
+                aria-label="Default select example">
+                <option selected disabled value="0">Select stars</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <p>Amenities:</p>
+            <span *ngFor="let amenitie of amenities">
+                <input type="checkbox" class="check" [id]="amenitie" [name]="amenitie" [ngModel]="false">
+                <label class="btn btn-primary amenities-label"
+                    [ngClass]="addOfferForm.value[amenitie] ? 'selected' : 'notSelected'" [for]="amenitie">{{amenitie}}</label>
+            </span>
+            
+        </div>
+        <div class="form-group">
+            <label for="price">Price per night:</label>
+            <input type="number" id="price" name="price" ngModel required>
+        </div>
+
+        <!--
+            checkboxes for Amenities
+            dinamick input for image galery
+        -->
+
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Add Offer</button>
         </div>

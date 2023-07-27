@@ -10,12 +10,20 @@ import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.act
 })
 export class AddOfferPageComponent implements OnInit {
 
-
   addOfferHandler(form: NgForm): void {
     console.log(form.value)
   }
 
+  
+  amenities: string[] = ['Free Wi-Fi', 'Air Conditioning', 'TV', 'Mini Bar', 'In-room Safe', 'Work Desk', 'Toiletries', 'Personal care', 'Coffee Kit', 'Free parking', 'Mobile Check-In', 'Pampered Pets', 'Kid Equipment', 'In-Room Cocktail Station', 'Fitness Tech', 'Arcade Games', 'Musical Instruments', 'Ironing Board', 'Iron', 'Bath Towel', 'Dental Kit', 'Shaving Kit'];
+
+  wifi: boolean = true;
+
   constructor(private store: Store) {}
+
+  demo(stars: string): void {
+    console.log(stars)
+  }
 
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({value: false}));

@@ -12,7 +12,23 @@
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin: 5px 5px 5px 0px;
+}
+
+.amenities-label {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+}
+
+.notSelected {
+    background-color: #fff;
+    color: #fea116;
+}
+
+.check{
+    margin-bottom: 30px;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
 }
 
 input[type="text"],
