@@ -1,0 +1,82 @@
+
+.room-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    max-width: 800px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.room-image img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.room-details {
+    margin-left: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.room-amenities {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.room-gallery {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.gallery-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.gallery-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.reviews-section {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.reviews-container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.review-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}

@@ -11,6 +11,7 @@ import { LoginPageComponent } from './auth-pages/login-page/login-page.component
 import { NotFoundPageComponent } from './home/not-found-page/not-found-page.component';
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 import { AddOfferPageComponent } from './add-offer/add-offer-page/add-offer-page.component';
+import { BookingRoomPageComponent } from './booking-room/booking-room-page/booking-room-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'profile/:profileId', component: ProfilePageComponent},
   {path: 'add-offer', component: AddOfferPageComponent},
+  {path: 'booking/:offerId', component: BookingRoomPageComponent},
   {path: '**', component: NotFoundPageComponent},
 
 ];
