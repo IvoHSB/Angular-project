@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { NgForm } from '@angular/forms';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
+import { bookingOffers } from 'src/app/functionalityServices/bookingInterfaces';
+import { bookingService } from 'src/app/functionalityServices/booking.service';
+import { user } from 'src/app/store/selectors/auth.selector';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-offer-page',
@@ -12,12 +16,13 @@ export class AddOfferPageComponent implements OnInit {
   
   haveError: boolean = false;
   errorMessage: string = '';
+  user: any;
   
 
   amenities: string[] = ['Free Wi-Fi', 'Air Conditioning', 'TV', 'Mini Bar', 'In-room Safe', 'Work Desk', 'Toiletries', 'Personal care', 'Coffee Kit', 'Free parking', 'Mobile Check-In', 'Pampered Pets', 'Kid Equipment', 'In-Room Cocktail Station', 'Fitness Tech', 'Arcade Games', 'Musical Instruments', 'Ironing Board', 'Iron', 'Bath Towel', 'Dental Kit', 'Shaving Kit'];
   stars: string = '';
 
-  constructor(private store: Store) {}
+  constructor(private _bookinService: bookingService, private store: Store, private router: Router) {}
 
   setStars(stars: string): void {
     this.stars = stars;
@@ -27,7 +32,7 @@ export class AddOfferPageComponent implements OnInit {
 
     this.haveError = false;
 
-    let formValue: any = form.value;
+    let formValue: bookingOffers = form.value;
 
     if (formValue.name === '') {
       this.haveError = true;
@@ -76,9 +81,15 @@ export class AddOfferPageComponent implements OnInit {
       this.errorMessage = 'Price field must be a bigger than 0!';
     }
 
-    console.log(this.haveError)
-
     if (!this.haveError) {
+      this._bookinService.addOffer(formValue, this.user.accessToken).subscribe((r: any) => {
+        this.router.navigate([`/booking/${r._id}`]);
+        console.log(r)
+      }, 
+      err => {
+          this.haveError = true;
+          this.errorMessage = 'We heva a problem, please try agayn later!';
+      })
     console.log(form.value)
     }
   }
@@ -86,6 +97,8 @@ export class AddOfferPageComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({value: false}));
     this.store.dispatch(changePage({value: 'Add Offer'}));
+
+    this.store.select(user).subscribe(r => this.user = r)
   }
 
 }
