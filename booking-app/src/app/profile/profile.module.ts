@@ -9,7 +9,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     ProfilePageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [ProfilePageComponent]
 })

@@ -1,16 +1,23 @@
+<div *ngIf="!room">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
 
 <div class="room-container">
     <div class="room-image">
         <img src="assets/img/room-1.jpg" alt="Room Image">
     </div>
     <div class="room-details">
-        <h2>Deluxe Room</h2>
-        <p>Size: 30 sqm</p>
-        <p>Occupancy: 2 Adults</p>
-        <p>Location: Varna, Bulgaria</p>
-        <p>Price: $200 per night</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in lacus eu odio
-            cursus auctor.</p>
+        <h2>{{room.name}}</h2>
+        <p>Size: {{room.size}}sqm</p>
+        <p>Occupancy: {{room.people}} People</p>
+        <p>Location: {{room.city}}, {{room.country}}</p>
+        <p>Price: ${{room.price}} per night</p>
+        <p>Description: {{room.description}}</p>
         <button>Book Now</button>
     </div>
 </div>
@@ -18,23 +25,20 @@
 <div class="room-amenities">
     <h2>Amenities</h2>
     <ul>
-        <li>Free Wi-Fi</li>
-        <li>Air Conditioning</li>
-        <li>Flat-screen TV</li>
-        <li>Mini Bar</li>
-        <li>In-room Safe</li>
-        <li>Work Desk</li>
+        <span *ngFor="let amenitie of amenities">
+            <li *ngIf="room[amenitie]">{{amenitie}}</li>
+        </span>
     </ul>
 </div>
 
-<div class="room-gallery">
+<!-- <div class="room-gallery">
     <h2>Room Gallery</h2>
     <div class="gallery-images">
         <img src="assets/img/room-1.jpg" alt="Gallery Image 1">
         <img src="assets/img/room-1.jpg" alt="Gallery Image 2">
         <img src="assets/img/room-1.jpg" alt="Gallery Image 3">
     </div>
-</div>
+</div> -->
 
 <section class="reviews-section">
     <h2>Reviews</h2>
