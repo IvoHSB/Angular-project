@@ -40,6 +40,7 @@ export class LoginPageComponent implements OnInit {
           this._authService.getUserDetailsByOwnerId(res._id).subscribe((response: any) => {
 
             this.store.dispatch(setUserDetailsId({value: response[0]._id}));
+            localStorage.setItem("user", "true");
             this.router.navigate([`/profile/${response[0]._id}`]);
             this.haveError = false;
           },

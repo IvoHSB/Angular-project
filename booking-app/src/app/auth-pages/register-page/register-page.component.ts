@@ -92,6 +92,7 @@ export class RegisterPageComponent implements OnInit {
             }
           })
           this.store.dispatch(setUser({value: res}));
+          localStorage.setItem("user", "true");
         },
         err => {
           this.haveError = true;

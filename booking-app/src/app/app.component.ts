@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { isMainHeader } from './store/selectors/header.selector';
@@ -22,5 +22,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(isMainHeader).subscribe(p => this.isMainHeader$ = p);
+    localStorage.clear();
   }
 }

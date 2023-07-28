@@ -12,6 +12,8 @@ import { NotFoundPageComponent } from './home/not-found-page/not-found-page.comp
 import { ProfilePageComponent } from './profile/profile-page/profile-page.component';
 import { AddOfferPageComponent } from './add-offer/add-offer-page/add-offer-page.component';
 import { BookingRoomPageComponent } from './booking-room/booking-room-page/booking-room-page.component';
+import { LogedUser } from './loged-user.service';
+import { LogoutUser } from './logout-user.service';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -20,10 +22,10 @@ const routes: Routes = [
   {path: 'booking', component: BookingPageComponent},
   {path: 'our-team', component: OurTeamPageComponent},
   {path: 'contact', component: ContactPageComponent},
-  {path: 'register', component: RegisterPageComponent},
-  {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: RegisterPageComponent, canActivate: [LogoutUser]},
+  {path: 'login', component: LoginPageComponent, canActivate: [LogoutUser]},
   {path: 'profile/:profileId', component: ProfilePageComponent},
-  {path: 'add-offer', component: AddOfferPageComponent},
+  {path: 'add-offer', component: AddOfferPageComponent, canActivate: [LogedUser]},
   {path: 'booking/:offerId', component: BookingRoomPageComponent},
   {path: '**', component: NotFoundPageComponent},
 
