@@ -9,20 +9,78 @@ import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.act
   styleUrls: ['./add-offer-page.component.css']
 })
 export class AddOfferPageComponent implements OnInit {
-
-  addOfferHandler(form: NgForm): void {
-    console.log(form.value)
-  }
-
   
+  haveError: boolean = false;
+  errorMessage: string = '';
+  
+
   amenities: string[] = ['Free Wi-Fi', 'Air Conditioning', 'TV', 'Mini Bar', 'In-room Safe', 'Work Desk', 'Toiletries', 'Personal care', 'Coffee Kit', 'Free parking', 'Mobile Check-In', 'Pampered Pets', 'Kid Equipment', 'In-Room Cocktail Station', 'Fitness Tech', 'Arcade Games', 'Musical Instruments', 'Ironing Board', 'Iron', 'Bath Towel', 'Dental Kit', 'Shaving Kit'];
-  galleryImages: string[] =[''];
-  wifi: boolean = true;
+  stars: string = '';
 
   constructor(private store: Store) {}
 
-  demo(stars: string): void {
-    console.log(stars)
+  setStars(stars: string): void {
+    this.stars = stars;
+  }
+
+  addOfferHandler(form: NgForm): void {
+
+    this.haveError = false;
+
+    let formValue: any = form.value;
+
+    if (formValue.name === '') {
+      this.haveError = true;
+      this.errorMessage = 'Room name field is required!';
+    } else if (formValue.name.length < 3) {
+      this.haveError = true;
+      this.errorMessage = 'Min name length is 3 characters!';
+    } else if (formValue.description === '') {
+      this.haveError = true;
+      this.errorMessage = 'Description field is required!';
+    } else if (!formValue.image.startsWith('http://') && !formValue.image.startsWith('https://')) {
+      this.haveError = true;
+      this.errorMessage = 'Image must start with "http://" or "https://"!';
+    } else if (formValue.city === '') {
+      this.haveError = true;
+      this.errorMessage = 'City field is required!';
+    } else if (formValue.country === '') {
+      this.haveError = true;
+      this.errorMessage = 'Country field is required!';
+    } else if (formValue.people === '') {
+      this.haveError = true;
+      this.errorMessage = 'Occupancy field is required!';
+    } else if (Number(formValue.people) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Occupancy field must be a bigger than 0!';
+    } else if (formValue.bath === '') {
+      this.haveError = true;
+      this.errorMessage = 'Num of bath field is required!';
+    } else if (Number(formValue.bath) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Num of bath field must be a bigger than 0!';
+    } else if (formValue.size === '') {
+      this.haveError = true;
+      this.errorMessage = 'Size in sqm field is required!';
+    } else if (Number(formValue.size) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Size in sqm field must be a bigger than 0!';
+    } else if (this.stars !== '0' && this.stars !== '1' && this.stars !== '2' && this.stars !== '3' && this.stars !== '4' && this.stars !== '5') {
+      this.haveError = true;
+      this.errorMessage = 'Please select stars!';
+    } else if (formValue.price === '') {
+      this.haveError = true;
+      this.errorMessage = 'Price field is required!';
+    } else if (Number(formValue.price) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Price field must be a bigger than 0!';
+    }
+
+    console.log(this.haveError)
+
+    if (!this.haveError) {
+    console.log(form.value)
+    }
   }
 
   ngOnInit(): void {

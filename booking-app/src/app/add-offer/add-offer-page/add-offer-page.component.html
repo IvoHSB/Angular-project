@@ -1,4 +1,11 @@
 <div class="form-container">
+
+    <div *ngIf="haveError" class="alert alert-danger d-flex align-items-center fixed-error" role="alert">
+        <div>
+            {{ errorMessage }}
+        </div>
+    </div>
+
     <form #addOfferForm="ngForm" (ngSubmit)="addOfferHandler(addOfferForm)">
         <div class="form-group">
             <label for="name">Room name:</label>
@@ -9,8 +16,8 @@
             <textarea id="description" name="description" ngModel required></textarea>
         </div>
         <div class="form-group">
-            <label for="mainImage">Main image:</label>
-            <input type="text" id="mainImage" name="mainImage" ngModel required>
+            <label for="image">Image:</label>
+            <input type="text" id="image" name="image" ngModel required>
         </div>
         <div class="form-group">
             <label for="city">City:</label>
@@ -32,17 +39,27 @@
             <label for="size">Size in sqm:</label>
             <input type="number" id="size" name="size" ngModel required>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <p>Images:</p>
             <div *ngFor="let img of galleryImages">
-                <input type="text" [id]="img + galleryImages.length" [name]="img + galleryImages.length" [ngModel]="img" required>
+                <input type="text" [id]="'img' + galleryImages.indexOf(img)" [name]="img + galleryImages.indexOf(img)" [ngModel]="galleryImages[galleryImages.indexOf(img)]" required>
+                <div *ngIf="galleryImages.length > 1" class="form-group button">
+                    <button class="btn btn-primary" type="button" (click)="removeImage(img)">Remove</button>
+                </div>
+                Add (one add button) and Remove button (remove buttuns for evry fields if they are more than 1) 
+                da go napravq kato dolniq select shte dam referenciq s #img ili neshto unikalno i posle shte go ||| vse taq tova koeto mislqh maj ne mi trqbva ||| ostavqm go za vseki sluchai 
             </div>
-        </div>
+
+            <div class="form-group button">
+                <button class="btn btn-primary" type="button" (click)="addImage()">Add Image</button>
+            </div>
+        </div> -->
         <div class="form-group">
             <label for="stars">Stars:</label>
-            <select class="form-select" #stars (change)="demo(stars.value)" id="stars"
+            <select class="form-select" #stars (change)="setStars(stars.value)" id="stars"
                 aria-label="Default select example">
                 <option selected disabled value="0">Select stars</option>
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -64,10 +81,6 @@
             <label for="price">Price per night:</label>
             <input type="number" id="price" name="price" ngModel required>
         </div>
-
-        <!--
-            dinamick input for image galery
-        -->
 
         <div class="form-group">
             <button class="btn btn-primary" type="submit">Add Offer</button>

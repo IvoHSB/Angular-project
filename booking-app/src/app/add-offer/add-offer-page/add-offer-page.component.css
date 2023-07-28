@@ -25,10 +25,16 @@ label {
     color: #fea116;
 }
 
-.check{
+.check {
     margin-bottom: 30px;
     position: absolute;
     clip: rect(0, 0, 0, 0);
+}
+
+.fixed-error {
+    position: sticky;
+    width: 100%;
+    top: 5%;
 }
 
 input[type="text"],
