@@ -23,6 +23,19 @@ export class BookingPageComponent implements OnInit {
     this.router.navigate([`/booking/${id}`]);
   }
 
+  openPage(page: any) {
+    this.offers = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    this._bookingService.getOffersByPage(page).subscribe(res => {
+      this.offers = res;
+    },
+      err => {
+        console.log('No have avaiable')
+      }
+    )
+    this.currPage = page;
+  }
+
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({ value: false }));
     this.store.dispatch(changePage({ value: 'Booking' }));

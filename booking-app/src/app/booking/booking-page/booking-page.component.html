@@ -48,7 +48,7 @@
 </div>
 
 <ul *ngIf="offerCount" class="pagination"> 
-    <li><a href="#" class="prev">&laquo; Prev</a></li>
-    <li *ngFor="let index of offerCount"><a [ngClass]="index === currPage ? 'active' : ''">{{index}}</a></li>
-    <li><a href="#" class="next">Next &raquo;</a></li>
+    <li *ngIf="currPage > 1" ><a (click)="openPage(currPage - 1)" class="prev">&laquo; Prev</a></li>
+    <li *ngFor="let index of offerCount"><a [ngClass]="index === currPage ? 'active' : ''" (click)="openPage(index)">{{index}}</a></li>
+    <li *ngIf="currPage < offerCount[offerCount.length - 1]" ><a class="next" (click)="openPage(currPage + 1)">Next &raquo;</a></li>
 </ul>
