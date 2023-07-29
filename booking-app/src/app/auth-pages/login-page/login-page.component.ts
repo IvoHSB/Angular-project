@@ -42,6 +42,7 @@ export class LoginPageComponent implements OnInit {
             this.store.dispatch(setUserDetailsId({value: response[0]._id}));
             localStorage.setItem("user", "true");
             this.router.navigate([`/profile/${response[0]._id}`]);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             this.haveError = false;
           },
           err => {

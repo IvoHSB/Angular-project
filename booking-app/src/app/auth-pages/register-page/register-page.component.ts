@@ -83,6 +83,7 @@ export class RegisterPageComponent implements OnInit {
                   this.store.dispatch(setUserDetailsId({value: response._id}));
 
                   this.router.navigate([`/profile/${response._id}`]);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 },
                 err => {
                   this.haveError = true;

@@ -21,6 +21,7 @@ export class BookingPageComponent implements OnInit {
 
   openOffer(id: string) {
     this.router.navigate([`/booking/${id}`]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   openPage(page: any) {

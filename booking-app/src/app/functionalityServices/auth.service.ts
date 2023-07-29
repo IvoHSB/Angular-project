@@ -21,6 +21,12 @@ export class AuthService {
     return this._http.post(`${this.authUrl}login`, JSON.stringify(data));
   }
 
+  logout(accessToken: string) {
+    return this._http.post(`${this.authUrl}/logout`, {
+      headers: {'X-Authorization': accessToken},
+    });
+  }
+
   addUserDetails(data: userDetailsData, token: string) {
     return this._http.post(`${this.userDetailsURL}`, data, {
       headers: {'X-Authorization': token, 'Content-Type': 'application/json'},

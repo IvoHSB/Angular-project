@@ -17,6 +17,7 @@
             <p>Email: {{profile$.email}}</p>
             <p>Location: {{profile$.city}}, {{profile$.country}}</p>
             <p>Phone: {{profile$.phone}}</p>
+            <button *ngIf="user$" (click)="logout()" class="btn btn-primary">Logout</button>
         </div>
     </div>
 
@@ -39,7 +40,7 @@
                 <p>Location: Tokyo, Japan</p>
             </div>
         </div>
-        <div *ngIf="profile$._ownerId === user$._id" class="col-md-2 bth-box">
+        <div *ngIf="user$ && profile$._ownerId === user$._id" class="col-md-2 bth-box">
             <button (click)="goToAddOfferPage()" class="btn btn-primary">Add offer</button>
         </div>
     </section>

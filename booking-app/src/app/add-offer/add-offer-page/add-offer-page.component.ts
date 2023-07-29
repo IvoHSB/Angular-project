@@ -86,7 +86,7 @@ export class AddOfferPageComponent implements OnInit {
     if (!this.haveError) {
       this._bookinService.addOffer(formValue, this.user.accessToken).subscribe((r: any) => {
         this.router.navigate([`/booking/${r._id}`]);
-        console.log(r)
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 
       err => {
           this.haveError = true;

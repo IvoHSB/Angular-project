@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/functionalityServices/auth.service';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 import { user } from 'src/app/store/selectors/auth.selector';
+import { setUser } from 'src/app/store/actions/auth.action';
 
 @Component({
   selector: 'app-profile-page',
@@ -20,6 +21,20 @@ export class ProfilePageComponent implements OnInit {
 
   goToAddOfferPage() {
     this.router.navigate(['/add-offer'])
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  logout() {
+    this._authService.logout(this.user$.accessToken).subscribe(res => {
+      this.store.dispatch(setUser({value: null}));
+      localStorage.clear();
+      this.router.navigate([`/`]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    err => {
+      console.log(err)
+    }
+    )
   }
 
   ngOnInit(): void {
