@@ -32,7 +32,9 @@ export class AddOfferPageComponent implements OnInit {
 
     this.haveError = false;
 
-    let formValue: bookingOffers = form.value;
+    let formValue: any = form.value;
+
+    formValue.stars = this.stars;
 
     if (formValue.name === '') {
       this.haveError = true;

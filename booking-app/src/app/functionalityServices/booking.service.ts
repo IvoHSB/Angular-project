@@ -20,4 +20,13 @@ export class bookingService {
     getOfferById(id: string) {
         return this._http.get(`${this.bookingOffersURL}/${id}`);
     }
+
+    getOfferCount() {
+        return this._http.get(`${this.bookingOffersURL}?count`);
+    }
+
+    getOffersByPage(page: number) {
+        let offset = (page * 6) - 6;
+        return this._http.get(`${this.bookingOffersURL}?offset=${offset}&pageSize=6`);
+    }
 }

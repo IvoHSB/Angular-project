@@ -21,6 +21,7 @@ export interface bookingOffers {
     'TV': boolean;
     'Toiletries': boolean;
     'Work Desk': boolean;
+    stars: string;
     bath: string;
     city: string;
     country: string;
