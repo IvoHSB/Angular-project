@@ -11,7 +11,7 @@ import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.act
 })
 export class BookingPageComponent implements OnInit {
 
-  offerCount: any = 0;
+  offerCount: any = [];
   pageSize = 6;
   currPage = 1;
   offers: any = false;
@@ -28,8 +28,19 @@ export class BookingPageComponent implements OnInit {
     this.store.dispatch(changePage({ value: 'Booking' }));
 
     this._bookingService.getOfferCount().subscribe(res => {
-      console.log(res)
-      this.offerCount = res;
+
+      if (Number(res) > this.pageSize) {
+        for (let i: number = this.pageSize; i <= Number(res); i += 6) {
+          this.offerCount.push(i / this.pageSize);
+        }
+
+        if (Number(res) % this.pageSize !== 0) {
+          this.offerCount.push(this.offerCount[this.offerCount - 1] + 1);
+        }
+      } else {
+        this.offerCount = false;
+      }
+
     },
       err => {
         console.log(0)
