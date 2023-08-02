@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { bookingService } from 'src/app/functionalityServices/booking.service';
@@ -13,7 +14,7 @@ import { user } from 'src/app/store/selectors/auth.selector';
 })
 export class EditOfferPageComponent implements OnInit {
 
-  obj: bookingOffers = {
+  obj: any = {
     'Air Conditioning': false,
     'Arcade Games': false,
     'Bath Towel': false,
@@ -59,8 +60,73 @@ export class EditOfferPageComponent implements OnInit {
 
   constructor(private store: Store, private location: Location, private _bookingService: bookingService, private router: Router) {}
 
-  addOfferHandler(form: any) {
+  updateAmenities(amenitie: string) {
+    this.room[amenitie] = !this.room[amenitie];
+  }
 
+  setStars(stars: string): void {
+    this.stars = stars;
+    this.room.stars = stars;
+  }
+
+  addOfferHandler(form: NgForm) {
+
+    this.haveError = false;
+
+    let formValue: any = form.value;
+
+    formValue.stars = this.stars;
+
+    if (formValue.name === '') {
+      this.haveError = true;
+      this.errorMessage = 'Room name field is required!';
+    } else if (formValue.name.length < 3) {
+      this.haveError = true;
+      this.errorMessage = 'Min name length is 3 characters!';
+    } else if (formValue.description === '') {
+      this.haveError = true;
+      this.errorMessage = 'Description field is required!';
+    } else if (!formValue.image.startsWith('http://') && !formValue.image.startsWith('https://')) {
+      this.haveError = true;
+      this.errorMessage = 'Image must start with "http://" or "https://"!';
+    } else if (formValue.city === '') {
+      this.haveError = true;
+      this.errorMessage = 'City field is required!';
+    } else if (formValue.country === '') {
+      this.haveError = true;
+      this.errorMessage = 'Country field is required!';
+    } else if (formValue.people === '') {
+      this.haveError = true;
+      this.errorMessage = 'Occupancy field is required!';
+    } else if (Number(formValue.people) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Occupancy field must be a bigger than 0!';
+    } else if (formValue.bath === '') {
+      this.haveError = true;
+      this.errorMessage = 'Num of bath field is required!';
+    } else if (Number(formValue.bath) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Num of bath field must be a bigger than 0!';
+    } else if (formValue.size === '') {
+      this.haveError = true;
+      this.errorMessage = 'Size in sqm field is required!';
+    } else if (Number(formValue.size) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Size in sqm field must be a bigger than 0!';
+    } else if (this.stars !== '0' && this.stars !== '1' && this.stars !== '2' && this.stars !== '3' && this.stars !== '4' && this.stars !== '5') {
+      this.haveError = true;
+      this.errorMessage = 'Please select stars!';
+    } else if (formValue.price === '') {
+      this.haveError = true;
+      this.errorMessage = 'Price field is required!';
+    } else if (Number(formValue.price) <= 0) {
+      this.haveError = true;
+      this.errorMessage = 'Price field must be a bigger than 0!';
+    }
+
+    if (!this.haveError) {
+      console.log(formValue)
+    }
   }
 
   ngOnInit(): void {
@@ -69,6 +135,7 @@ export class EditOfferPageComponent implements OnInit {
 
     this.store.select(user).subscribe((p: any) => {
       this.user = p;
+      this.obj = Object.assign({}, p);
       if (this.user && this.room) {
         if (this.user._id !== this.room._ownerId) {
           this.router.navigate([`/404`]);
@@ -77,8 +144,9 @@ export class EditOfferPageComponent implements OnInit {
 
     });
 
-    this._bookingService.getOfferById(id).subscribe(r => {
+    this._bookingService.getOfferById(id).subscribe((r: any) => {
       this.room = r;
+      this.stars = r.stars;
       console.log(this.room)
       if (this.user && this.room) {
         if (this.user._id !== this.room._ownerId) {

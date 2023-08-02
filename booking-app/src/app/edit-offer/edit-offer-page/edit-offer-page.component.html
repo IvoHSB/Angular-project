@@ -39,48 +39,31 @@
             <label for="size">Size in sqm:</label>
             <input type="number" id="size" name="size" [ngModel]="room.size" required>
         </div>
-        <!-- <div class="form-group">
-            <p>Images:</p>
-            <div *ngFor="let img of galleryImages">
-                <input type="text" [id]="'img' + galleryImages.indexOf(img)" [name]="img + galleryImages.indexOf(img)" [ngModel]="galleryImages[galleryImages.indexOf(img)]" required>
-                <div *ngIf="galleryImages.length > 1" class="form-group button">
-                    <button class="btn btn-primary" type="button" (click)="removeImage(img)">Remove</button>
-                </div>
-                Add (one add button) and Remove button (remove buttuns for evry fields if they are more than 1) 
-                da go napravq kato dolniq select shte dam referenciq s #img ili neshto unikalno i posle shte go ||| vse taq tova koeto mislqh maj ne mi trqbva ||| ostavqm go za vseki sluchai 
-            </div>
 
-            <div class="form-group button">
-                <button class="btn btn-primary" type="button" (click)="addImage()">Add Image</button>
-            </div>
-        </div> -->
-
-
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label for="stars">Stars:</label>
-            <select class="form-select" #stars (change)="setStars(stars.value)" id="stars"
+            <select class="form-select" #starsInput (change)="setStars(starsInput.value)" id="stars"
                 aria-label="Default select example">
-                <option selected disabled value="0">Select stars</option>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option [selected]="stars === '0'" value="0">0</option>
+                <option [selected]="stars === '1'" value="1">1</option>
+                <option [selected]="stars === '2'" value="2">2</option>
+                <option [selected]="stars === '3'" value="3">3</option>
+                <option [selected]="stars === '4'" value="4">4</option>
+                <option [selected]="stars === '5'" value="5">5</option>
             </select>
-        </div> -->
+        </div>
 
 
-        <!-- <div class="form-group">
+        <div class="form-group">
             <p>Amenities:</p>
             <span *ngFor="let amenitie of amenities">
-                <input type="checkbox" class="check" [id]="amenitie" [name]="amenitie" [ngModel]="false">
+                <input type="checkbox" class="check" [id]="amenitie" [name]="amenitie" (change)="updateAmenities(amenitie)" [ngModel]="room[amenitie]">
                 <label class="btn btn-primary amenities-label"
-                    [ngClass]="addOfferForm.value[amenitie] ? 'selected' : 'notSelected'"
+                    [ngClass]="room[amenitie] ? 'selected' : 'notSelected'"
                     [for]="amenitie">{{amenitie}}</label>
             </span>
 
-        </div> -->
+        </div>
 
         
         <div class="form-group">
