@@ -18,7 +18,9 @@
         <p>Location: {{room.city}}, {{room.country}}</p>
         <p>Price: ${{room.price}} per night</p>
         <p>Description: {{room.description}}</p>
-        <button>Book Now</button>
+        <button *ngIf="user && user._id === room._ownerId" (click)="editOffer()">Edit offer</button>
+        <button *ngIf="user && user._id === room._ownerId">Remove offer</button>
+        <button *ngIf="user && user._id !== room._ownerId">Book Now</button>
     </div>
 </div>
 

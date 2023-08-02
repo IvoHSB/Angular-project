@@ -14,6 +14,7 @@ import { AddOfferPageComponent } from './add-offer/add-offer-page/add-offer-page
 import { BookingRoomPageComponent } from './booking-room/booking-room-page/booking-room-page.component';
 import { LogedUser } from './loged-user.service';
 import { LogoutUser } from './logout-user.service';
+import { EditOfferPageComponent } from './edit-offer/edit-offer-page/edit-offer-page.component';
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'profile/:profileId', component: ProfilePageComponent},
   {path: 'add-offer', component: AddOfferPageComponent, canActivate: [LogedUser]},
   {path: 'booking/:offerId', component: BookingRoomPageComponent},
+  {path: 'edit/:offerId', component: EditOfferPageComponent},
   {path: '**', component: NotFoundPageComponent},
 
 ];

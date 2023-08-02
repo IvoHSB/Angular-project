@@ -20,7 +20,7 @@ import { AddOfferModule } from './add-offer/add-offer.module';
 
 import { reducers } from './store/reducers';
 import { BookingRoomModule } from './booking-room/booking-room.module';
-import { SpinnerComponent } from './share/spinner/spinner.component';
+import { EditOfferModule } from './edit-offer/edit-offer.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { SpinnerComponent } from './share/spinner/spinner.component';
     ProfileModule,
     AddOfferModule,
     BookingRoomModule,
+    EditOfferModule,
     StoreModule.forRoot(
       reducers
     )

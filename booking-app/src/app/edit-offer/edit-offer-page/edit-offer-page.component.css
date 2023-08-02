@@ -1,0 +1,47 @@
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 5px 5px 5px 0px;
+}
+
+.amenities-label {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+}
+
+.notSelected {
+    background-color: #fff;
+    color: #fea116;
+}
+
+.check {
+    margin-bottom: 30px;
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+.fixed-error {
+    position: sticky;
+    width: 100%;
+    top: 5%;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
