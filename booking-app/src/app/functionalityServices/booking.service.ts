@@ -23,6 +23,12 @@ export class bookingService {
         });
     }
 
+    deleteOffer(token: string, id: string) {
+        return this._http.delete(`${this.bookingOffersURL}/${id}`, {
+            headers: { 'X-Authorization': token },
+        });
+    }
+
     getOfferById(id: string) {
         return this._http.get(`${this.bookingOffersURL}/${id}`);
     }

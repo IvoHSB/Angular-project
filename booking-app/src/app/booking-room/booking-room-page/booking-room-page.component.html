@@ -7,6 +7,15 @@
     </div>
 </div>
 
+<div *ngIf="isOpenRemoveDialog" class="align-items-center fixed-error" role="alert">
+    <div class="dialog position-absolute top-50 start-50 translate-middle">
+        Are you sure you want to delete this offer?
+        <br />
+        <button (click)="removeOffer()">Yes</button>
+        <button (click)="closeDialog()">No</button>
+    </div>
+</div>
+
 <div class="room-container">
     <div class="room-image">
         <img src="{{room.image}}" alt="Room Image">
@@ -19,7 +28,7 @@
         <p>Price: ${{room.price}} per night</p>
         <p>Description: {{room.description}}</p>
         <button *ngIf="user && user._id === room._ownerId" (click)="editOffer()">Edit offer</button>
-        <button *ngIf="user && user._id === room._ownerId">Remove offer</button>
+        <button *ngIf="user && user._id === room._ownerId" (click)="openRemoveDialog()">Remove offer</button>
         <button *ngIf="user && user._id !== room._ownerId">Book Now</button>
     </div>
 </div>

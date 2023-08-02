@@ -7,13 +7,18 @@
     </div>
 </div>
 
-<div *ngIf="offers && haveOffers" class="container-xxl py-5">
+<div *ngIf="offers" class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
             <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
         </div>
         <div class="row g-4">
+            <div class="noOffers" *ngIf="offers.length === 0">
+                <h1>No offers yet</h1>
+                <h3>create your offer</h3>
+                <button (click)="addOffer()">Add offer</button>
+            </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let offer of offers">
                 <div class="room-item shadow rounded overflow-hidden">
                     <div class="position-relative">

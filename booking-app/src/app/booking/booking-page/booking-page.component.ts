@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { bookingService } from 'src/app/functionalityServices/booking.service';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
+import { user } from 'src/app/store/selectors/auth.selector';
 
 @Component({
   selector: 'app-booking-page',
@@ -15,9 +16,20 @@ export class BookingPageComponent implements OnInit {
   pageSize = 6;
   currPage = 1;
   offers: any = false;
-  haveOffers: boolean = true;
+
+  user: any;
 
   constructor(private store: Store, private _bookingService: bookingService, private router: Router) { }
+
+  addOffer() {
+    if (this.user) {
+      this.router.navigate([`/add-offer`]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      this.router.navigate([`/login`]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
 
   openOffer(id: string) {
     this.router.navigate([`/booking/${id}`]);
@@ -40,6 +52,8 @@ export class BookingPageComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({ value: false }));
     this.store.dispatch(changePage({ value: 'Booking' }));
+
+    this.store.select(user).subscribe((p: any) => this.user = p);
 
     this._bookingService.getOfferCount().subscribe(res => {
 
@@ -64,7 +78,6 @@ export class BookingPageComponent implements OnInit {
 
     this._bookingService.getOffersByPage(1).subscribe(res => {
       this.offers = res;
-      console.log(res)
     },
       err => {
         console.log('No have avaiable')

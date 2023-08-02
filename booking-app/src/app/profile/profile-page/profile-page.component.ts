@@ -46,6 +46,10 @@ export class ProfilePageComponent implements OnInit {
       res => {
         this.profile$ = res;
         console.log(res)
+      }, 
+      err => {
+        this.router.navigate([`/`]);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     )
 
