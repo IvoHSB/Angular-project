@@ -126,6 +126,15 @@ export class EditOfferPageComponent implements OnInit {
 
     if (!this.haveError) {
       console.log(formValue)
+
+      this._bookingService.editOffer(formValue, this.user.accessToken, this.room._id).subscribe((r: any) => {
+        this.router.navigate([`/booking/${r._id}`]);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 
+      err => {
+        this.haveError = true;
+        this.errorMessage = 'We heve a problem, please try again later!';
+      })
     }
   }
 

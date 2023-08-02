@@ -17,6 +17,12 @@ export class bookingService {
         });
     }
 
+    editOffer(data: any, token: string, id: string) {
+        return this._http.put(`${this.bookingOffersURL}/${id}`, data, {
+            headers: { 'X-Authorization': token, 'Content-Type': 'application/json' },
+        });
+    }
+
     getOfferById(id: string) {
         return this._http.get(`${this.bookingOffersURL}/${id}`);
     }
