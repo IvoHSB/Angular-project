@@ -6,6 +6,7 @@ import { VideoSectionComponent } from './video-section/video-section.component';
 import { ServicesModule } from '../services/services.module';
 import { HeaderForHomeComponent } from './header-for-home/header-for-home.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     NotFoundPageComponent
   ],
   imports: [
-    CommonModule, AboutModule, ServicesModule
+    CommonModule, AboutModule, ServicesModule, RouterModule
   ],
   exports: [HomePageComponent, HeaderForHomeComponent, NotFoundPageComponent]
 })

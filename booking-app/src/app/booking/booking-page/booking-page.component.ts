@@ -43,7 +43,7 @@ export class BookingPageComponent implements OnInit {
       this.offers = res;
     },
       err => {
-        console.log('No have avaiable')
+        console.log('No have avaiable');
       }
     )
     this.currPage = page;
@@ -80,7 +80,8 @@ export class BookingPageComponent implements OnInit {
       this.offers = res;
     },
       err => {
-        console.log('No have avaiable')
+        this.offers = [];
+        console.log('No have avaiable');
       }
     )
   }
