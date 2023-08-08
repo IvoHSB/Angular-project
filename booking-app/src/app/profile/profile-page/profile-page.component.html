@@ -21,29 +21,51 @@
         </div>
     </div>
 
-    <section class="booking-section">
-        <h2>Bookings</h2>
-        <div class="booking-container">
-            <div class="booking-item">
-                <h3>Booking 1</h3>
-                <p>Date: January 1, 2023</p>
-                <p>Location: Paris, France</p>
-            </div>
-            <div class="booking-item">
-                <h3>Booking 2</h3>
-                <p>Date: February 15, 2023</p>
-                <p>Location: London, UK</p>
-            </div>
-            <div class="booking-item">
-                <h3>Booking 3</h3>
-                <p>Date: March 20, 2023</p>
-                <p>Location: Tokyo, Japan</p>
+        <div *ngIf="offers" class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+                    <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
+                </div>
+                <div class="row g-4">
+                    <div class="noOffers" *ngIf="offers.length === 0">
+                        <h2>No offers yet</h2>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" *ngFor="let offer of offers">
+                        <div class="room-item shadow rounded overflow-hidden">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="{{offer.image}}" alt="">
+                                <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+                            </div>
+                            <div class="p-4 mt-2">
+                                <div class="d-flex justify-content-between mb-3">
+                                    <h5 class="mb-0">{{offer.name}}</h5>
+                                    <div class="ps-2">
+                                        <small *ngIf="offer.stars === '1' || offer.stars === '2' || offer.stars === '3' || offer.stars === '4' || offer.stars === '5'" class="fa fa-star text-primary"></small>
+                                        <small *ngIf="offer.stars === '2' || offer.stars === '3' || offer.stars === '4' || offer.stars === '5'" class="fa fa-star text-primary"></small>
+                                        <small *ngIf="offer.stars === '3' || offer.stars === '4' || offer.stars === '5'" class="fa fa-star text-primary"></small>
+                                        <small *ngIf="offer.stars === '4' || offer.stars === '5'" class="fa fa-star text-primary"></small>
+                                        <small *ngIf="offer.stars === '5'" class="fa fa-star text-primary"></small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>{{offer.people}} People</small>
+                                    <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>{{offer.bath}} Bath</small>
+                                    <small *ngIf="offer['Free Wi-Fi']"><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+                                </div>
+                                <p class="text-body mb-3">{{offer.description}}</p>
+                                <div class="d-flex justify-content-between">
+                                    <a class="btn btn-sm btn-primary rounded py-2 px-4" (click)="openOffer(offer._id)">View Detail</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div *ngIf="user$ && profile$._ownerId === user$._id" class="col-md-2 bth-box">
             <button (click)="goToAddOfferPage()" class="btn btn-primary">Add offer</button>
         </div>
-    </section>
 
     <section class="reviews-section">
         <h2>Reviews</h2>

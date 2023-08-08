@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/functionalityServices/auth.service';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 import { user } from 'src/app/store/selectors/auth.selector';
 import { setUser, setUserDetailsId } from 'src/app/store/actions/auth.action';
+import { bookingService } from 'src/app/functionalityServices/booking.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,8 +17,9 @@ export class ProfilePageComponent implements OnInit {
 
   profile$: any = null;
   user$: any = null;
+  offers: any = null;
 
-  constructor(private store: Store, private router: Router, private _authService: AuthService, private location: Location) {}
+  constructor(private store: Store, private router: Router, private _authService: AuthService, private _bookingService: bookingService, private location: Location) {}
 
   goToAddOfferPage() {
     this.router.navigate(['/add-offer'])
@@ -38,14 +40,27 @@ export class ProfilePageComponent implements OnInit {
     )
   }
 
+  openOffer(id: string) {
+    this.router.navigate([`/booking/${id}`]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   ngOnInit(): void {
     this.store.dispatch(changeIsMainHeader({value: false}));
     this.store.dispatch(changePage({value: 'Profile'}));
 
     const id = this.location.path().split('/')[2];
     this._authService.getUserDetails(id).subscribe(
-      res => {
+      (res: any) => {
         this.profile$ = res;
+        this._bookingService.getOfferByOwner(res.email).subscribe(res => {
+          this.offers = res;
+        },
+          err => {
+            this.offers = [];
+            console.log('No have avaiable');
+          }
+        )
         console.log(res)
       }, 
       err => {
@@ -55,6 +70,8 @@ export class ProfilePageComponent implements OnInit {
     )
 
     this.store.select(user).subscribe((p: any) => this.user$ = p);
+
+    
   }
 
 }

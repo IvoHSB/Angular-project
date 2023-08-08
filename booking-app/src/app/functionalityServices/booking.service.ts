@@ -33,6 +33,10 @@ export class bookingService {
         return this._http.get(`${this.bookingOffersURL}/${id}`);
     }
 
+    getOfferByOwner(ownerEmail: string) {
+        return this._http.get(`${this.bookingOffersURL}?where=ownerEmail%3D%22${ownerEmail}%22`);
+    }
+
     getOfferCount() {
         return this._http.get(`${this.bookingOffersURL}?count`);
     }
