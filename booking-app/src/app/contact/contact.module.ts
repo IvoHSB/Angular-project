@@ -5,6 +5,7 @@ import { HeaderComponent } from './header/header.component';
 import { EmailsSectionComponent } from './emails-section/emails-section.component';
 import { MapComponent } from './map/map.component';
 import { FormComponent } from './form/form.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { FormComponent } from './form/form.component';
     FormComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [ContactPageComponent]
 })

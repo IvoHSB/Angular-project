@@ -1,0 +1,27 @@
+
+.fixed-error {
+    position: sticky;
+    width: 100%;
+    top: 5%;
+}
+
+.alert-window {
+    z-index: 10000000;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    bottom: -84.8%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.alert-for-success {
+    position: sticky;
+    top: 50%;
+    left: 20%;
+    width: 60%;
+}
+
+.text-box {
+    text-align: center;
+}
