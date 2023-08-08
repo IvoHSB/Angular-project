@@ -53,18 +53,17 @@
 
 <section class="reviews-section">
     <h2>Reviews</h2>
-    <div class="reviews-container">
-        <div class="review-item">
-            <h3>Review 1</h3>
-            <p>Rating: 4.5/5</p>
-            <p>Comment: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam commodo cursus
-                hendrerit. Donec aliquam nulla id condimentum vestibulum.</p>
+    <div *ngIf="user">
+        <label for="review">Leave review:</label>
+        <textarea class="text-area-review" id="review" #review name="review" (change)="changeReviewContent(review.value)"></textarea>
+        <button class="btn btn-primary" (click)="postReview()">Post</button>
+    </div>
+    <div *ngIf="reviews && reviews.length > 0" class="reviews-container">
+        <div *ngFor="let review of reviews" class="review-item">
+            <h5 class="user-nickname" (click)="openProfile(review.profileId)">{{review.ownerName}}</h5>
+            <p>{{review.content}}</p>
+            <button class="delete-button" *ngIf="user && review._ownerId === user._id" (click)="deleteReview(review._id)">Delete</button>
         </div>
-        <div class="review-item">
-            <h3>Review 2</h3>
-            <p>Rating: 5/5</p>
-            <p>Comment: Nullam sed semper massa. Integer eu dapibus dolor. Nam finibus commodo orci ut
-                pellentesque.</p>
-        </div>
+        
     </div>
 </section>

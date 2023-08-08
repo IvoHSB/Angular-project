@@ -32,3 +32,10 @@ export interface bookingOffers {
     price: string;
     size: string;
 }
+
+export interface review {
+    content: String;
+    ownerName: String;
+    profileId: String;
+    offerId: String;
+}

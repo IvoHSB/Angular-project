@@ -19,8 +19,10 @@ export class BookingRoomPageComponent implements OnInit {
   room: any = false;
   user: any = false;
   profileId: any = null;
+  reviewContent: string = '';
+  reviews: any = null;
 
-  constructor(private _bookingService: bookingService ,private store: Store, private location: Location, private router: Router) {}
+  constructor(private _bookingService: bookingService, private store: Store, private location: Location, private router: Router) { }
 
   editOffer(): void {
     this.router.navigate([`/edit/${this.room._id}`]);
@@ -35,6 +37,35 @@ export class BookingRoomPageComponent implements OnInit {
     this.isOpenRemoveDialog = true;
   }
 
+  changeReviewContent(content: string) {
+    this.reviewContent = content;
+  }
+
+  postReview() {
+    this._bookingService.postReview({ content: this.reviewContent, ownerName: this.user.name, profileId: this.profileId, offerId: this.room._id }, this.user.accessToken).subscribe(
+      res => {
+        console.log(res)
+        let textArea: any = document.getElementById('review');
+        textArea.value = '';
+        this._bookingService.getReviewsByOfferId(this.location.path().split('/')[2]).subscribe((r: any) => {
+          this.reviews = r.reverse();
+        },
+          err => {
+            this.reviews = [];
+          }
+        )
+      },
+      err => {
+
+      }
+    );
+  }
+
+  openProfile(id: string) {
+    this.router.navigate([`/profile/${id}`]);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   removeOffer() {
     this._bookingService.deleteOffer(this.user.accessToken, this.room._id).subscribe(r => {
       this.router.navigate([`/profile/${this.profileId}`]);
@@ -44,9 +75,25 @@ export class BookingRoomPageComponent implements OnInit {
     })
   }
 
+  deleteReview(id: string) {
+    this._bookingService.deleteReview(id, this.user.accessToken).subscribe(r => {
+      this._bookingService.getReviewsByOfferId(this.location.path().split('/')[2]).subscribe((r: any) => {
+        this.reviews = r.reverse();
+      },
+        err => {
+
+        }
+      )
+    },
+      err => {
+
+      }
+    )
+  }
+
   ngOnInit(): void {
-    this.store.dispatch(changeIsMainHeader({value: false}));
-    this.store.dispatch(changePage({value: 'Room Details'}));
+    this.store.dispatch(changeIsMainHeader({ value: false }));
+    this.store.dispatch(changePage({ value: 'Room Details' }));
 
     const id = this.location.path().split('/')[2];
 
@@ -56,6 +103,15 @@ export class BookingRoomPageComponent implements OnInit {
       this.room = r;
       console.log(r)
     })
+
+    this._bookingService.getReviewsByOfferId(id).subscribe((r: any) => {
+      this.reviews = r.reverse();
+
+    },
+      err => {
+        this.reviews = [];
+      }
+    )
 
     this.store.select(userDetailsId).subscribe((p: any) => this.profileId = p);
   }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { bookingOffers } from './bookingInterfaces';
+import { bookingOffers, review } from './bookingInterfaces';
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +8,7 @@ import { bookingOffers } from './bookingInterfaces';
 
 export class bookingService {
     bookingOffersURL: string = 'http://localhost:3030/data/bookingOffers';
+    reviewsURL: string = 'http://localhost:3030/data/reviews';
 
     constructor(private _http: HttpClient) { }
 
@@ -44,5 +45,25 @@ export class bookingService {
     getOffersByPage(page: number) {
         let offset = (page * 6) - 6;
         return this._http.get(`${this.bookingOffersURL}?offset=${offset}&pageSize=6`);
+    }
+
+    postReview(data: review, token: string) {
+        console.log(data , token)
+        return this._http.post(`${this.reviewsURL}`, data, {
+            headers: {
+                'X-Authorization': token,
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+
+    getReviewsByOfferId(id: string) {
+        return this._http.get(`${this.reviewsURL}?where=offerId%3D%22${id}%22`)
+    }
+
+    deleteReview(id: string, token: string) {
+        return this._http.delete(`${this.reviewsURL}/${id}`, {
+            headers: { 'X-Authorization': token },
+        });
     }
 }
