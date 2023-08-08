@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AboutUsSectionComponent } from './about-us-section/about-us-section.component';
 import { OutTeamSectionComponent } from './out-team-section/out-team-section.component';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -13,7 +14,8 @@ import { AboutPageComponent } from './about-page/about-page.component';
     AboutPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [AboutUsSectionComponent, OutTeamSectionComponent, AboutPageComponent]
 })
