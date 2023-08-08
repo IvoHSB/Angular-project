@@ -127,3 +127,13 @@ footer {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.owner-name{
+    cursor: pointer;
+    text-decoration: underline 1px solid;
+    transition: all 0.2s;
+}
+
+.owner-name:hover {
+    color: #fea116;
+}

@@ -22,6 +22,7 @@
     </div>
     <div class="room-details">
         <h2>{{room.name}}</h2>
+        <p>Owner: <span class="owner-name" (click)="openProfile(room.ownerProfile)">{{room.ownerName}}</span></p>
         <p>Size: {{room.size}}sqm</p>
         <p>Occupancy: {{room.people}} People</p>
         <p>Location: {{room.city}}, {{room.country}}</p>
@@ -53,7 +54,7 @@
 
 <section class="reviews-section">
     <h2>Reviews</h2>
-    <div *ngIf="user">
+    <div *ngIf="user && user._id !== room._ownerId">
         <label for="review">Leave review:</label>
         <textarea class="text-area-review" id="review" #review name="review" (change)="changeReviewContent(review.value)"></textarea>
         <button class="btn btn-primary" (click)="postReview()">Post</button>
@@ -64,6 +65,8 @@
             <p>{{review.content}}</p>
             <button class="delete-button" *ngIf="user && review._ownerId === user._id" (click)="deleteReview(review._id)">Delete</button>
         </div>
-        
+    </div>
+    <div *ngIf="!reviews || reviews.length === 0" class="reviews-container">
+        <h3>No have any reviews!</h3>
     </div>
 </section>

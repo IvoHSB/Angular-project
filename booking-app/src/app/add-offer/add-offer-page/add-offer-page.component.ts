@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 import { bookingOffers } from 'src/app/functionalityServices/bookingInterfaces';
 import { bookingService } from 'src/app/functionalityServices/booking.service';
-import { user } from 'src/app/store/selectors/auth.selector';
+import { user, userDetailsId } from 'src/app/store/selectors/auth.selector';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +17,7 @@ export class AddOfferPageComponent implements OnInit {
   haveError: boolean = false;
   errorMessage: string = '';
   user: any;
+  profileId: any;
   
 
   amenities: string[] = ['Free Wi-Fi', 'Air Conditioning', 'TV', 'Mini Bar', 'In-room Safe', 'Work Desk', 'Toiletries', 'Personal care', 'Coffee Kit', 'Free parking', 'Mobile Check-In', 'Pampered Pets', 'Kid Equipment', 'In-Room Cocktail Station', 'Fitness Tech', 'Arcade Games', 'Musical Instruments', 'Ironing Board', 'Iron', 'Bath Towel', 'Dental Kit', 'Shaving Kit'];
@@ -83,8 +84,12 @@ export class AddOfferPageComponent implements OnInit {
       this.errorMessage = 'Price field must be a bigger than 0!';
     }
 
+
+
     if (!this.haveError) {
       formValue.ownerEmail = this.user.email;
+      formValue.ownerName = this.user.name;
+      formValue.ownerProfile = this.profileId;
       this._bookinService.addOffer(formValue, this.user.accessToken).subscribe((r: any) => {
         this.router.navigate([`/booking/${r._id}`]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -102,6 +107,7 @@ export class AddOfferPageComponent implements OnInit {
     this.store.dispatch(changePage({value: 'Add Offer'}));
 
     this.store.select(user).subscribe(r => this.user = r)
+    this.store.select(userDetailsId).subscribe((p: any) => this.profileId = p);
   }
 
 }
