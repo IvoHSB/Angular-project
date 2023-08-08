@@ -6,4 +6,4 @@ const actionTypes = {
 }
 
 export const setUser = createAction(actionTypes.setUser, props<{value: any}>());
-export const setUserDetailsId = createAction(actionTypes.setUserDetailsId, props<{value: string}>());
+export const setUserDetailsId = createAction(actionTypes.setUserDetailsId, props<{value: any}>());

@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/functionalityServices/auth.service';
 import { changeIsMainHeader, changePage } from 'src/app/store/actions/header.action';
 import { user } from 'src/app/store/selectors/auth.selector';
-import { setUser } from 'src/app/store/actions/auth.action';
+import { setUser, setUserDetailsId } from 'src/app/store/actions/auth.action';
 
 @Component({
   selector: 'app-profile-page',
@@ -27,6 +27,7 @@ export class ProfilePageComponent implements OnInit {
   logout() {
     this._authService.logout(this.user$.accessToken).subscribe(res => {
       this.store.dispatch(setUser({value: null}));
+      this.store.dispatch(setUserDetailsId({value: null}));
       localStorage.clear();
       this.router.navigate([`/`]);
       window.scrollTo({ top: 0, behavior: 'smooth' });
