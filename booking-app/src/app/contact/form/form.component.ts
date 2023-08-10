@@ -44,7 +44,6 @@ export class FormComponent {
         this.router.navigate([`/`]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 5000)
-      console.log(formValue)
     }
   }
 }

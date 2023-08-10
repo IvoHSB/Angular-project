@@ -103,7 +103,6 @@ export class RegisterPageComponent implements OnInit {
   }
 
   demo(): void {
-    console.log(this.store.select(user));
   }
 
   ngOnInit(): void {

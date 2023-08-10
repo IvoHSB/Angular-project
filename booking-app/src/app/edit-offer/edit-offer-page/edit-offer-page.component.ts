@@ -130,8 +130,6 @@ export class EditOfferPageComponent implements OnInit {
       formValue.ownerEmail = this.room.ownerEmail;
       formValue.ownerProfile = this.room.ownerProfile;
 
-      console.log(formValue)
-
       this._bookingService.editOffer(formValue, this.user.accessToken, this.room._id).subscribe((r: any) => {
         this.router.navigate([`/booking/${r._id}`]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -161,7 +159,6 @@ export class EditOfferPageComponent implements OnInit {
     this._bookingService.getOfferById(id).subscribe((r: any) => {
       this.room = r;
       this.stars = r.stars;
-      console.log(this.room)
       if (this.user && this.room) {
         if (this.user._id !== this.room._ownerId) {
           this.router.navigate([`/404`]);

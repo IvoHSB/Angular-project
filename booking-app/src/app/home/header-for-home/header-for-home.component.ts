@@ -17,7 +17,6 @@ export class HeaderForHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(userDetailsId).subscribe((p: any) => {
-      console.log(p)
       this.profileId = p;
     });
   }

@@ -48,7 +48,6 @@ export class bookingService {
     }
 
     postReview(data: review, token: string) {
-        console.log(data , token)
         return this._http.post(`${this.reviewsURL}`, data, {
             headers: {
                 'X-Authorization': token,

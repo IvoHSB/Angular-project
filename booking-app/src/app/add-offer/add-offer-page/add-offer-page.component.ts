@@ -98,7 +98,6 @@ export class AddOfferPageComponent implements OnInit {
           this.haveError = true;
           this.errorMessage = 'We heva a problem, please try agayn later!';
       })
-    console.log(form.value)
     }
   }
 

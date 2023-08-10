@@ -44,7 +44,6 @@ export class BookingRoomPageComponent implements OnInit {
   postReview() {
     this._bookingService.postReview({ content: this.reviewContent, ownerName: this.user.name, profileId: this.profileId, offerId: this.room._id }, this.user.accessToken).subscribe(
       res => {
-        console.log(res)
         let textArea: any = document.getElementById('review');
         textArea.value = '';
         this._bookingService.getReviewsByOfferId(this.location.path().split('/')[2]).subscribe((r: any) => {
@@ -101,7 +100,6 @@ export class BookingRoomPageComponent implements OnInit {
 
     this._bookingService.getOfferById(id).subscribe(r => {
       this.room = r;
-      console.log(r)
     })
 
     this._bookingService.getReviewsByOfferId(id).subscribe((r: any) => {

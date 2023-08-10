@@ -71,7 +71,6 @@ export class BookingPageComponent implements OnInit {
 
     },
       err => {
-        console.log(0)
         this.offerCount = 0;
       }
     )
