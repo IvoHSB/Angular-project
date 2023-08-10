@@ -125,6 +125,11 @@ export class EditOfferPageComponent implements OnInit {
     }
 
     if (!this.haveError) {
+
+      formValue.ownerName = this.room.ownerName;
+      formValue.ownerEmail = this.room.ownerEmail;
+      formValue.ownerProfile = this.room.ownerProfile;
+
       console.log(formValue)
 
       this._bookingService.editOffer(formValue, this.user.accessToken, this.room._id).subscribe((r: any) => {
