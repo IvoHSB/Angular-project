@@ -22,7 +22,7 @@ export class AuthService {
   }
 
   logout(accessToken: string) {
-    return this._http.post(`${this.authUrl}/logout`, {
+    return this._http.post(`${this.authUrl}logout`, {
       headers: {'X-Authorization': accessToken},
     });
   }

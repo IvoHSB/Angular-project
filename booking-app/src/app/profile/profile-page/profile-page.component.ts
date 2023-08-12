@@ -20,7 +20,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   user$: any = null;
   offers: any = null;
 
-  constructor(private store: Store, private router: Router, private _authService: AuthService, private _bookingService: bookingService, private location: Location) {}
+  constructor(private store: Store, private router: Router, private _authService: AuthService, private _bookingService: bookingService, private location: Location) { }
 
   subscription: Subscription;
 
@@ -31,15 +31,18 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   logout() {
     this._authService.logout(this.user$.accessToken).subscribe(res => {
-      this.store.dispatch(setUser({value: null}));
-      this.store.dispatch(setUserDetailsId({value: null}));
+      // this.user$ = null;
+      // this.profile$ = null;
+      this.store.dispatch(setUser({ value: null }));
+      this.store.dispatch(setUserDetailsId({ value: null }));
       localStorage.clear();
+
       this.router.navigate([`/`]);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-    err => {
-      console.log(err)
-    }
+      err => {
+        console.log(err)
+      }
     )
   }
 
@@ -49,8 +52,8 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(changeIsMainHeader({value: false}));
-    this.store.dispatch(changePage({value: 'Profile'}));
+    this.store.dispatch(changeIsMainHeader({ value: false }));
+    this.store.dispatch(changePage({ value: 'Profile' }));
 
     const id = this.location.path().split('/')[2];
 
@@ -65,7 +68,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
             console.log('No have avaiable');
           }
         )
-      }, 
+      },
       err => {
         this.router.navigate([`/`]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -73,7 +76,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     )
 
     this.subscription = this.router.events.subscribe(event => {
-      if(event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd) {
         let newId = event.url.split('/')[2];
         this._authService.getUserDetails(newId).subscribe(
           (res: any) => {
@@ -86,7 +89,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
                 console.log('No have avaiable');
               }
             )
-          }, 
+          },
           err => {
             this.router.navigate([`/`]);
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -97,9 +100,9 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
     this.store.select(user).subscribe((p: any) => this.user$ = p);
 
-    
+
   }
- 
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }

@@ -73,27 +73,26 @@ export class RegisterPageComponent implements OnInit {
 
     if (!this.haveError) {
       this._authService.register(registerBody).subscribe(
-        res => {
+        (res: any) => {
           this.haveError = false;
           this.user = res;
-          this.store.select(user).subscribe((p: any) => {
-            if (p) {
-              this._authService.addUserDetails(userDetails, p.accessToken).subscribe(
-                (response: any) => {
-                  this.store.dispatch(setUserDetailsId({value: response._id}));
 
-                  this.router.navigate([`/profile/${response._id}`]);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                },
-                err => {
-                  this.haveError = true;
-                  this.errorMessage = err.error.message;
-                } 
-              )
-            }
-          })
-          this.store.dispatch(setUser({value: res}));
+          this.store.dispatch(setUser({ value: res }));
           localStorage.setItem("user", "true");
+          if (res) {
+            this._authService.addUserDetails(userDetails, res.accessToken).subscribe(
+              (response: any) => {
+                this.store.dispatch(setUserDetailsId({ value: response._id }));
+
+                this.router.navigate([`/profile/${response._id}`]);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              },
+              err => {
+                this.haveError = true;
+                this.errorMessage = err.error.message;
+              }
+            )
+          }
         },
         err => {
           this.haveError = true;

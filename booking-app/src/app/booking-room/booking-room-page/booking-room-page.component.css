@@ -109,6 +109,7 @@ footer {
 }
 
 .user-nickname {
+    width: min-content;
     cursor: pointer;
     transition: all 0.2s;
 }

@@ -8,7 +8,7 @@
 
     <form #addOfferForm="ngForm" (ngSubmit)="addOfferHandler(addOfferForm)">
         <div class="form-group">
-            <label for="name">Room name:</label>
+            <label for="name">Offer name:</label>
             <input type="text" id="name" name="name" [ngModel]="room.name" required>
         </div>
         <div class="form-group">
@@ -72,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">Add Offer</button>
+            <button class="btn btn-primary" type="submit">Edit Offer</button>
         </div>
     </form>
 </div>
