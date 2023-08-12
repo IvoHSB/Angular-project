@@ -17,10 +17,6 @@ export class NavigationComponent implements OnInit {
 
   constructor(private location: Location, private store: Store ) {}
 
-  changeActivePage(page: String): void {
-    // this.activePage = page;
-  }
-
   ngOnInit(): void {
     this.store.select(user).subscribe((p: any) => this.user$ = p);
     
