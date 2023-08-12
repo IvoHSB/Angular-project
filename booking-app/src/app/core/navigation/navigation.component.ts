@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { user, userDetailsId } from 'src/app/store/selectors/auth.selector';
 import { registerBody } from 'src/app/functionalityServices/authInterfaces';
+import { page } from 'src/app/store/selectors/header.selector';
 
 @Component({
   selector: 'app-navigation',
@@ -17,7 +18,7 @@ export class NavigationComponent implements OnInit {
   constructor(private location: Location, private store: Store ) {}
 
   changeActivePage(page: String): void {
-    this.activePage = page;
+    // this.activePage = page;
   }
 
   ngOnInit(): void {
@@ -31,6 +32,9 @@ export class NavigationComponent implements OnInit {
 
 
     this.store.select(userDetailsId).subscribe((p: any) => this.profileId$ = p);
+    this.store.select(page).subscribe(page => {
+      this.activePage = page;
+    })
 
   }
 }
