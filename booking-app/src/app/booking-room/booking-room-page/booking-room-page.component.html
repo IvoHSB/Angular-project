@@ -7,6 +7,14 @@
     </div>
 </div>
 
+<div *ngIf="isAlertOpen" class="alert-window">
+    <div class="alert alert-for-success alert-success d-flex align-items-center" role="alert">
+        <div class="text-box">
+            You successfully book this offer! You will be redirected to the booking page after 5 seconds.
+        </div>
+    </div>
+</div>
+
 <div *ngIf="isOpenRemoveDialog" class="align-items-center fixed-error" role="alert">
     <div class="dialog position-absolute top-50 start-50 translate-middle">
         Are you sure you want to delete this offer?
@@ -30,7 +38,7 @@
         <p>Description: {{room.description}}</p>
         <button *ngIf="user && user._id === room._ownerId" (click)="editOffer()">Edit offer</button>
         <button *ngIf="user && user._id === room._ownerId" (click)="openRemoveDialog()">Remove offer</button>
-        <button *ngIf="user && user._id !== room._ownerId">Book Now</button>
+        <button (click)="booking()" *ngIf="user && user._id !== room._ownerId">Book Now</button>
     </div>
 </div>
 

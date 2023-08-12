@@ -138,3 +138,24 @@ footer {
 .owner-name:hover {
     color: #fea116;
 }
+
+.alert-window {
+    z-index: 10000000;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    bottom: -100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.alert-for-success {
+    position: sticky;
+    top: 50%;
+    left: 20%;
+    width: 60%;
+}
+
+.text-box {
+    text-align: center;
+}

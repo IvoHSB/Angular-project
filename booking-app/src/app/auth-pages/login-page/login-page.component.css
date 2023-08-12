@@ -49,3 +49,9 @@
     color: #fea116;
     text-decoration: none;
   }
+
+  .fixed-error {
+    position: sticky;
+    width: 100%;
+    top: 5%;
+  }

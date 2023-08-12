@@ -16,6 +16,7 @@ export class BookingRoomPageComponent implements OnInit {
   amenities: string[] = ['Free Wi-Fi', 'Air Conditioning', 'TV', 'Mini Bar', 'In-room Safe', 'Work Desk', 'Toiletries', 'Personal care', 'Coffee Kit', 'Free parking', 'Mobile Check-In', 'Pampered Pets', 'Kid Equipment', 'In-Room Cocktail Station', 'Fitness Tech', 'Arcade Games', 'Musical Instruments', 'Ironing Board', 'Iron', 'Bath Towel', 'Dental Kit', 'Shaving Kit'];
   isOpenRemoveDialog: boolean = false;
 
+  isAlertOpen: boolean = false;
   room: any = false;
   user: any = false;
   profileId: any = null;
@@ -63,6 +64,14 @@ export class BookingRoomPageComponent implements OnInit {
   openProfile(id: string) {
     this.router.navigate([`/profile/${id}`]);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  booking() {
+    this.isAlertOpen = true;
+    setTimeout(() => {
+      this.router.navigate([`/booking`]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 5000)
   }
 
   removeOffer() {
