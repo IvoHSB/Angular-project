@@ -10,12 +10,15 @@ import { isMainHeader } from 'src/app/store/selectors/header.selector';
 })
 export class HeaderForHomeComponent implements OnInit {
 
-  isMainHeader$ = this.store.select(isMainHeader);
+  isMainHeader$: boolean = true;
   profileId: any = null;
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
+    this.store.select(isMainHeader).subscribe(isMain => {
+      this.isMainHeader$ = isMain;
+    })
     this.store.select(userDetailsId).subscribe((p: any) => {
       this.profileId = p;
     });
