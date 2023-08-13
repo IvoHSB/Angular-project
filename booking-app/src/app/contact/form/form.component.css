@@ -3,6 +3,7 @@
     position: sticky;
     width: 100%;
     top: 5%;
+    z-index: 10;
 }
 
 .alert-window {
